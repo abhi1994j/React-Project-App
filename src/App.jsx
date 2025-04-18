@@ -6,7 +6,7 @@ import Weather from "./pages/Weather"
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
 
-const Approutes = () => {
+const App = () => {
   return (
     <>
       <Navbar/>
@@ -21,4 +21,4 @@ const Approutes = () => {
   )
 }
 
-export default Approutes
+export default App;
