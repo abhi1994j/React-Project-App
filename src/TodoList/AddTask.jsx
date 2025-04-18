@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 const AddTask = (props) => {
@@ -28,11 +29,11 @@ const AddTask = (props) => {
     
   }
  
-  // useEffect(()=>{
-  //   if(isSubmit){
-  //     localStorage.setItem("taskList" , JSON.stringify(taskList))
-  //   }  
-  // }, [taskList])
+  useEffect(()=>{
+    if(isSubmit){
+      localStorage.setItem("taskList" , JSON.stringify(taskList))
+    }  
+  }, [taskList])
 
   
   return (
