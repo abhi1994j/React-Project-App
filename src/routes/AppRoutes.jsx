@@ -16,7 +16,7 @@ const Approutes = () => {
               <Route path="/todo" element={<FormValidation/>}/>
               <Route path="/weather" element={<Weather/>}/>
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   )
 }
