@@ -8,7 +8,7 @@ const Navbar = () => {
   const navItems = [
     {
       id: 1,
-      item: "Form Validation",
+      item: "Todo List",
       links: "/"
     },
     {
@@ -18,7 +18,7 @@ const Navbar = () => {
     },
     {
       id: 3,
-      item: "Todo List",
+      item: "Form Validation",
       links: "/todo"
     },
     {

@@ -1,9 +1,9 @@
-import React from "react";
 import { MdOutlineEditCalendar, MdOutlineTaskAlt } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 const TaskList = (props) => {
-  const {taskList , setTaskList} = props ;
+
+  const {taskList , setTaskList , handleUpdate} = props ;
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -19,6 +19,15 @@ const TaskList = (props) => {
       } 
     });
   };
+  
+  function handleChecked(id){
+    console.log(id);
+    const updatedChecklist = taskList.map((ele)=>{
+      return ele.id === id ? {...ele , check: !ele.check } : ele ;  
+    })
+    setTaskList(updatedChecklist)
+  }
+
   
   return (
     <>
@@ -41,11 +50,11 @@ const TaskList = (props) => {
                 // console.log(task.id)
                  <div key={task.id} className="py-2 px-6 bg-gray-200 hover:bg-gray-300 flex justify-between rounded-sm items-center mb-2">
                     <div className="flex items-center gap-6">
-                      <button className="hover:bg-teal-700 hover:text-white rounded-sm active:text-green-400">
-                        <MdOutlineTaskAlt className="text-lg m-3 " />
+                      <button onClick={()=>handleChecked(task.id)} className="hover:bg-teal-700 hover:text-white rounded-sm active:text-green-400">
+                        <MdOutlineTaskAlt className={`text-lg m-3 ${ task.check ? "text-green-400" : "text-gray-400"}`} />
                       </button>
                       <div className="">
-                        <p className="font-normal overflow-hidden">{task.title}</p>
+                        <p  className={`font-normal ${task.check ? "line-through" : ''} overflow-hidden`}>{task.title}</p>
                         <p className="text-[12px] text-gray-500">{task.description}</p>
                         <p className="text-[12px] text-gray-500">
                           Created At {task.date}
@@ -53,11 +62,11 @@ const TaskList = (props) => {
                       </div>
                     </div>
                  <div className="flex items-center gap-1">
-                   <button className="hover:bg-teal-700 hover:text-white rounded-sm">
+                   <button className="hover:bg-teal-700 hover:text-white rounded-sm" onClick={()=>handleUpdate(task.id)}>
                      <MdOutlineEditCalendar className="text-lg m-3 " />
                    </button>
-                   <button className="hover:bg-teal-700 hover:text-white rounded-sm">
-                     <RiDeleteBinLine className="text-lg m-3 " onClick={()=>handleDelete(task.id)}/>
+                   <button className="hover:bg-teal-700 hover:text-white rounded-sm" onClick={()=>handleDelete(task.id)}>
+                     <RiDeleteBinLine className="text-lg m-3 " />
                    </button>
                  </div>
                </div>  

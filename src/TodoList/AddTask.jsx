@@ -3,31 +3,40 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 const AddTask = (props) => {
-  const {taskList , setTaskList , isSubmit , setIsSubmit} = props ;
-  const {register , handleSubmit  , formState: {errors} , reset} = useForm();
+  const {taskList , setTaskList , isSubmit , setIsSubmit , handleSubmit ,register ,reset , errors , isUpdated , setIsUpdated , editId , setEditId } = props ;
+  
 
   const onSubmit = (data)=>{
       console.log("Form data" , data);
       const {Title , Description} = data;
       toast.success("Submit Task Successfully");
-      const newTask = {
-        id: Date.now(),
-        title: Title,
-        description: Description,
-        date: new Date().toLocaleDateString('en-GB'),
-      };
-     
-      setTaskList([...taskList , newTask]);
+      if (isUpdated) {
+        const updatedList = taskList.map((task) =>
+          task.id === editId ? { ...task, ...data } : task
+        );
+        setTaskList(updatedList);
+        setIsUpdated(false);
+        setEditId(null);
+      } else {
+        const newTask = {
+          id: Date.now(),
+          ...data,
+        };
+        setTaskList([...taskList, newTask]);
+      }
+      reset(); // Clear form after submit
       setIsSubmit(true);
-      reset();
+      localStorage.setItem("taskList", JSON.stringify(taskList));
+    
   }
  
-  useEffect(()=>{
-    if(isSubmit){
-      localStorage.setItem("taskList" , JSON.stringify(taskList))
-    } 
-      
-  }, [taskList])
+  // useEffect(()=>{
+  //   if(isSubmit){
+  //     localStorage.setItem("taskList" , JSON.stringify(taskList))
+  //   }  
+  // }, [taskList])
+
+  
   return (
     <>
         <section className='p-4 w-full bg-gray-100 rounded-lg'>
@@ -45,7 +54,7 @@ const AddTask = (props) => {
                     })}
                     placeholder='Description'/> 
                     {errors.Description && <p className="text-red-400 text-sm ">{errors.Description.message}</p>}
-                    <button type='submit' className='bg-teal-700 hover:bg-teal-600 p-2 rounded-sm text-white w-[120px] flex justify-around items-center'>+ <span>Add Task</span></button>
+                    <button type='submit' className='bg-teal-700 hover:bg-teal-600 p-2 rounded-sm text-white w-[120px] flex justify-around items-center'>+ <span>{isUpdated ? "Edit Task" : "Add Task"}</span></button>
               </form>  
         </section>
     </>

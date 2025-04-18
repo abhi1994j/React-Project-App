@@ -11,9 +11,9 @@ const Approutes = () => {
     <>
       <Navbar/>
       <Routes>
-              <Route path="/" element={<FormValidation/>}/>
+              <Route path="/" element={<TodoList/>}/>
               <Route path="/addtocart" element={<AddtoCart/>}/>
-              <Route path="/todo" element={<TodoList/>}/>
+              <Route path="/todo" element={<FormValidation/>}/>
               <Route path="/weather" element={<Weather/>}/>
       </Routes>
       {/* <Footer/> */}
