@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 const AddTask = (props) => {
-  const {taskList , setTaskList , isSubmit , setIsSubmit , handleSubmit ,register ,reset , errors , isUpdated , setIsUpdated , editId , setEditId } = props ;
+  const {taskList , setTaskList  , setIsSubmit , handleSubmit ,register ,reset , errors , isUpdated , setIsUpdated , editId , setEditId } = props ;
   
 
   const onSubmit = (data)=>{
