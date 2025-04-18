@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 const AddTask = (props) => {
   const {taskList , setTaskList , isSubmit , setIsSubmit} = props ;
-  const {register , handleSubmit , watch , formState: {errors} , reset} = useForm();
+  const {register , handleSubmit  , formState: {errors} , reset} = useForm();
 
   const onSubmit = (data)=>{
       console.log("Form data" , data);

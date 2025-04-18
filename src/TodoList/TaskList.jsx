@@ -1,7 +1,6 @@
 import React from "react";
 import { MdOutlineEditCalendar, MdOutlineTaskAlt } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 const TaskList = (props) => {
   const {taskList , setTaskList} = props ;
