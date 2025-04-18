@@ -5,90 +5,75 @@ import { FaGithub } from "react-icons/fa";
 
 const Navbar = () => {
   const [flag, setFlag] = useState(false);
+  const navItems = [
+    {
+      id: 1,
+      item: "Form Validation",
+      links: "/"
+    },
+    {
+      id: 2,
+      item: "Add to Cart",
+      links: "/addtocart"
+    },
+    {
+      id: 3,
+      item: "Todo List",
+      links: "/todo"
+    },
+    {
+      id: 4,
+      item: "Weather",
+      links: "/weather"
+    }
+  ]
   return (
     <>
-      <nav className="p-2 dark:bg-blue-300 text-white ">
-        <div className="m-2 flex justify-between items-center">
-          <h1 className="text-sm sm:text-lg md:text-xl text-bold hover:text-gray-500 cursor-pointer">
+      <nav className="w-full h-auto relative p-2 dark:bg-blue-300 text-white ">
+        <div className="m-2 sticky z-50 flex justify-between items-center">
+          <h1 className="text-sm sm:text-lg md:text-xl font-bold hover:text-gray-500 cursor-pointer">
             React Projects
           </h1>
-          <ul className="nav-list hidden md:block md:flex gap-4">
-            <li>
+          <ul className="nav-list hidden md:flex gap-4">
+            {navItems.map((ele)=>{
+              return <li key={ele.id}>
               <NavLink
-                className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline"
-                to="/"
+                className="font-normal hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline"
+                to={ele.links}
               >
-                Form Validation
+                {ele.item}
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline"
-                to="/addtocart"
-              >
-                Add to Cart
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline"
-                to="/todo"
-              >
-                Todo List
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline"
-                to="/weather"
-              >
-                Weather
-              </NavLink>
-            </li>
+            })}
+            
           </ul>
           <div className="logo w-8">
-            <a href="">
-              <FaGithub className="text-black text-xl"/>
-            </a>
+            <NavLink to="https://github.com/abhi1994j/React-Project-App">
+              <FaGithub className="text-black text-xl hover:text-gray-600"/>
+            </NavLink>
           </div>
           <button className="md:hidden block" onClick={() => setFlag(!flag)}>
             {flag ? <GiCancel /> : <GiHamburgerMenu />}
           </button>
+
           {/* <div className='search-bar'>
                 <input type="text" placeholder='Search...' />
                 <button>Search</button>
             </div> */}
+
         </div>
       </nav>
-      {flag ? (
+      {flag && (
         <section className="md:hidden bg-blue-200 text-white px-3 pt-2 pb-4 space-y-2">
-          <NavLink
-            to="/"
-            className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline block"
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/addtocart"
-            className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline block"
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/todo"
-            className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline block"
-          >
-            Services
-          </NavLink>
-          <NavLink
-            to="/weather"
-            className="semibold hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline block"
-          >
-            Contact
-          </NavLink>
+           {navItems.map((ele)=>{
+              return <NavLink
+              to={ele.links}
+              className="font-normal hover:text-blue-500 transition-colors hover:underline active:text-blue-600 active:underline block"
+            >
+              {ele.item}
+            </NavLink>
+            })}
         </section>
-      ) : (
-        ""
       )}
     </>
   );

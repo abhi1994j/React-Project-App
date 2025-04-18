@@ -1,6 +1,10 @@
+import TaskMaster from "../TodoList/TaskMaster";
+
 const TodoList = () => {
   return (
-    <div>TodoList</div>
+    <>
+      <TaskMaster/>
+    </>
   )
 }
 

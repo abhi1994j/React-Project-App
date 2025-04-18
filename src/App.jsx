@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
 import Approutes from './routes/Approutes'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <BrowserRouter>
           <Approutes/>
+          <ToastContainer/>
       </BrowserRouter>
     </>
   )
